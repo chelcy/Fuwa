@@ -12,9 +12,11 @@ import java.util.ArrayList;
 public class Manager {
 
 	private Fuwa plugin;
+	private String prefix;
 
 	public Manager(Fuwa fuwa) {
 		plugin = fuwa;
+		prefix = plugin.getPrefix();
 	}
 
 	private ArrayList<Player> onlist = new ArrayList<>();
@@ -33,5 +35,15 @@ public class Manager {
 
 	public boolean isContain(Player p) {
 		return onlist.contains(p);
+	}
+
+	public void switchPlayer(Player p) {
+		if (isContain(p)) {
+			removePlayer(p);
+			p.sendMessage(prefix + "解除しました。");
+		} else {
+			addPlayer(p);
+			p.sendMessage(prefix + "設定しました。");
+		}
 	}
 }

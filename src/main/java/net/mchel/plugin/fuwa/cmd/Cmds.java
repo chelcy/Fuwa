@@ -1,6 +1,7 @@
 package net.mchel.plugin.fuwa.cmd;
 
 import net.mchel.plugin.fuwa.Fuwa;
+import net.mchel.plugin.fuwa.Manager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,9 +15,11 @@ public class Cmds implements CommandExecutor {
 
 	private Fuwa plugin;
 	private String prefix;
+	private Manager ma;
 	public Cmds(Fuwa fuwa) {
-		this.plugin = fuwa;
-		this.prefix = plugin.getPrefix();
+		plugin = fuwa;
+		prefix = plugin.getPrefix();
+		ma = plugin.getManager();
 	}
 
 	@Override
@@ -30,7 +33,7 @@ public class Cmds implements CommandExecutor {
 			return true;
 		}
 
-
+		ma.switchPlayer((Player)sender);
 
 		return true;
 	}
