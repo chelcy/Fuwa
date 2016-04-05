@@ -1,7 +1,11 @@
 package net.mchel.plugin.fuwa;
 
 import net.mchel.plugin.fuwa.Fuwa;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 
@@ -46,4 +50,27 @@ public class Manager {
 			p.sendMessage(prefix + "設定しました。");
 		}
 	}
+
+
+	/**
+	 * えふぇくとぷれいしよー
+	 * @param player ぷれいやー
+	 * @param center ちゅうしんのばしょ
+	 */
+	public void playEffect(final Player player , final Location center) {
+
+		new BukkitRunnable() {
+
+			@Override
+			public void run() {
+				center.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, center, 100, 1,1,1,0.0001);
+			}
+		}.runTaskAsynchronously(plugin);
+
+
+
+	}
+
+
+
 }

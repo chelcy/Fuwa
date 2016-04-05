@@ -9,11 +9,11 @@
     <version>1.0</version>
 
     <repositories>
-        <repository>
-            <id>spigotmc-public</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>
+    <repository>
+        <id>spigotmc-public</id>
+        <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+    </repository>
+</repositories>
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>

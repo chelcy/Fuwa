@@ -8,7 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.util.BlockIterator;
+import sun.security.action.GetLongAction;
 
 /**
  * @author Chelcy
@@ -28,16 +30,15 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
-		if (!ma.isContain(p) || !e.getAction().toString().startsWith("RIGHT_")) {
+		if (!ma.isContain(p) || !e.getAction().toString().startsWith("RIGHT_") || !e.getHand().equals(EquipmentSlot.HAND)) {
 			return;
 		}
-
 		Block b = getTargetBlock(p);
 		if (b == null) {
 			return;
 		}
-
-
+		e.setCancelled(true);
+		ma.playEffect(p , b.getLocation().add(0,1,0));
 	}
 
 	private Block getTargetBlock(Player p) {
