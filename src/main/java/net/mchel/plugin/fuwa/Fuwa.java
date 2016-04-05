@@ -1,16 +1,11 @@
 package net.mchel.plugin.fuwa;
 
 import net.mchel.plugin.fuwa.cmd.Cmds;
-import net.mchel.plugin.fuwa.listener.Manager;
 import net.mchel.plugin.fuwa.listener.PlayerListener;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 /**

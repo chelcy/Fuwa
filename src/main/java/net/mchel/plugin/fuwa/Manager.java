@@ -1,4 +1,4 @@
-package net.mchel.plugin.fuwa.listener;
+package net.mchel.plugin.fuwa;
 
 import net.mchel.plugin.fuwa.Fuwa;
 import org.bukkit.entity.Player;
