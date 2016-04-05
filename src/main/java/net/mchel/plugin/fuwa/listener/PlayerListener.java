@@ -30,7 +30,7 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
-		if (!ma.isContain(p) || !e.getAction().toString().startsWith("RIGHT_") || !e.getHand().equals(EquipmentSlot.HAND)) {
+		if (!ma.isContain(p)) {
 			return;
 		}
 		Block b = getTargetBlock(p);
@@ -38,7 +38,10 @@ public class PlayerListener implements Listener{
 			return;
 		}
 		e.setCancelled(true);
-		ma.playEffect(p , b.getLocation().add(0,1,0));
+		if (e.getHand().equals(EquipmentSlot.HAND)) {
+			ma.playEffect(p , b.getLocation().add(0,1,0));
+		}
+
 	}
 
 	private Block getTargetBlock(Player p) {

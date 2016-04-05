@@ -4,6 +4,7 @@ import net.mchel.plugin.fuwa.Fuwa;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -60,13 +61,22 @@ public class Manager {
 	public void playEffect(final Player player , final Location center) {
 
 		new BukkitRunnable() {
-
+			int i = 0;
+			final Location loc = center.clone();
+			final World world = loc.getWorld();
 			@Override
 			public void run() {
-				center.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, center, 100, 1,1,1,0.0001);
-			}
-		}.runTaskAsynchronously(plugin);
 
+				world.spawnParticle(Particle.EXPLOSION_NORMAL, loc, 100, 1,1,1,0.0001);
+
+				loc.add(0,1,0);
+
+				i++;
+				if (i == 50) {
+					cancel();
+				}
+			}
+		}.runTaskTimerAsynchronously(plugin,2,2);
 
 
 	}
