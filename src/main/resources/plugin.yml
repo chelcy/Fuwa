@@ -1,0 +1,15 @@
+name: Fuwa
+version: 0.0.1
+main: net.mchel.plugin.fuwa.Fuwa
+author: chelcy
+
+commands:
+  fuwa:
+    description: fuwafuwa
+    permission: fuwa
+    permission-message: You dont have permission to fuwafuwa
+    usage: /<command>
+permissions:
+  fuwa:
+    description: fuwafuwa manager
+    default: op
