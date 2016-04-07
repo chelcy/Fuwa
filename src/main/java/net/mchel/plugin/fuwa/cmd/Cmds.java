@@ -13,11 +13,10 @@ import org.bukkit.entity.Player;
  */
 public class Cmds implements CommandExecutor {
 
-	private Fuwa plugin;
 	private String prefix;
 	private Manager ma;
 	public Cmds(Fuwa fuwa) {
-		plugin = fuwa;
+		Fuwa plugin = fuwa;
 		prefix = plugin.getPrefix();
 		ma = plugin.getManager();
 	}

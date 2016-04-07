@@ -55,10 +55,9 @@ public class Manager {
 
 	/**
 	 * えふぇくとぷれいしよー
-	 * @param player ぷれいやー
 	 * @param center ちゅうしんのばしょ
 	 */
-	public void playEffect(final Player player , final Location center) {
+	public void playEffect(final Location center) {
 
 		new BukkitRunnable() {
 			int i = 0;
