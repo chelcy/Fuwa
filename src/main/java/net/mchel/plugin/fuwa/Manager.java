@@ -8,6 +8,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -78,6 +79,37 @@ public class Manager {
 		}.runTaskTimerAsynchronously(plugin,2,2);
 
 
+	}
+
+	public void playEffect(final Location center, final int redius_first ,final int redius_expand, final int interval) {
+		for (int i = redius_first ; i <= redius_expand ; i++) {
+			show(center, i , interval);
+		}
+	}
+
+
+	private void show(final Location center, final int radius, final double interval) {
+		BigDecimal rad = new BigDecimal(radius);
+		BigDecimal inte = new BigDecimal(interval);
+
+		BigDecimal angle_one = inte.divide(rad);
+
+		BigDecimal angle_mid = angle_one;
+
+		for (int i = 1 ; angle_mid.doubleValue() < 2*Math.PI ; i++) {
+
+			showN(center, radius, angle_mid);
+
+			angle_mid = angle_mid.add(angle_one.multiply(new BigDecimal(i)));
+		}
+
+	}
+
+	private void showN(final Location center, final double radius , final BigDecimal angle) {
+		Location loc = center.clone();
+		loc.setX(radius * Math.cos(angle.doubleValue()));
+		loc.setZ(radius * Math.sin(angle.doubleValue()));
+		loc.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, loc, 100, 1,1,1,0.0001);
 	}
 
 
