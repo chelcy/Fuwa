@@ -39,7 +39,7 @@ public class PlayerListener implements Listener{
 		}
 		e.setCancelled(true);
 		if (e.getHand().equals(EquipmentSlot.HAND)) {
-			ma.playEffect(p , b.getLocation().add(0,1,0));
+			ma.playEffect(b.getLocation().add(0,1,0),5, 12, 0.1);
 		}
 
 	}
