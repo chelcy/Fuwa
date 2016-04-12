@@ -56,36 +56,36 @@ public class Manager {
 	 * @param center ちゅうしんのばしょ
 	 */
 	public void playEffect(final Location center) {
-
 		new BukkitRunnable() {
 			int i = 0;
 			final Location loc = center.clone();
 			final World world = loc.getWorld();
 			@Override
 			public void run() {
-
 				world.spawnParticle(Particle.EXPLOSION_NORMAL, loc, 100, 1,1,1,0.0001);
-
 				loc.add(0,1,0);
-
 				i++;
 				if (i == 50) {
 					cancel();
 				}
 			}
 		}.runTaskTimerAsynchronously(plugin,2,2);
-
-
 	}
 
-	public void playEffect(final Location center, final int redius_first ,final int redius_expand, final double interval) {
-
+	/**
+	 * 円形に広がっていくエフェクト
+	 * @param center
+	 * @param redius_first
+	 * @param redius_expand
+	 * @param interval
+	 */
+	public void playEffectA(final Location center, final int redius_first ,final int redius_expand, final double interval) {
 		new BukkitRunnable() {
 			int i = redius_first;
 			@Override
 			public void run() {
 				if (i <= redius_expand) {
-					show(center, i , interval);
+					showA(center, i , interval);
 					i++;
 				} else {
 					cancel();
@@ -93,30 +93,22 @@ public class Manager {
 			}
 		}.runTaskTimerAsynchronously(plugin, 1L, 3L);
 	}
-
-
-	private void show(final Location center, final int radius, final double interval) {
+	private void showA(final Location center, final int radius, final double interval) {
 		BigDecimal rad = new BigDecimal(radius);
 		BigDecimal inte = new BigDecimal(interval);
-
 		BigDecimal angle_one = inte.divide(rad, 4, BigDecimal.ROUND_HALF_UP);
-
 		BigDecimal angle_mid = angle_one;
-
 		for (int i = 1 ; angle_mid.doubleValue() < 2*Math.PI ; i++) {
-
-			showN(center, radius, angle_mid);
-
+			createParticle(center, radius, angle_mid, 100, 0,1,0,0.0001);
 			angle_mid = angle_mid.add(angle_one.multiply(new BigDecimal(i)));
 		}
-
 	}
 
-	private void showN(final Location center, final double radius , final BigDecimal angle) {
+	private void createParticle(final Location center, final double radius , final BigDecimal angle , final int count , final double x , final double y , final double z , final double speed) {
 		Location loc = center.clone();
 		loc.setX(loc.getX() + radius * Math.cos(angle.doubleValue()));
 		loc.setZ(loc.getZ() + radius * Math.sin(angle.doubleValue()));
-		loc.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, loc, 100, 0,1,0,0.0001);
+		loc.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, loc, count, x, y, z, speed);
 	}
 
 
