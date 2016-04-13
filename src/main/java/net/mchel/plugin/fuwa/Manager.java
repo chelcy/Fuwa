@@ -144,6 +144,7 @@ public class Manager {
 			BigDecimal rad = new BigDecimal(radius_first);
 			BigDecimal angle_one = new BigDecimal(interval).divide(rad, 4, BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(angleRatio));
 			BigDecimal angle_mid = angle_one;
+			BigDecimal angle_mid_op = angle_one.add(new BigDecimal(Math.PI));
 			double radius_mid = radius_first;
 
 			@Override
@@ -154,7 +155,9 @@ public class Manager {
 				} else {
 					radius_mid -= radius_remove;
 					createSmokeParticle(loc, radius_mid, angle_mid, 100,0,0.1,0,0.0001);
+					createSmokeParticle(loc, radius_mid, angle_mid_op, 100,0,0.1,0,0.0001);
 					angle_mid = angle_mid.add(angle_one);
+					angle_mid_op = angle_mid_op.add(angle_one);
 				}
 				loc.add(0,addHeight, 0);
 			}
@@ -182,7 +185,13 @@ public class Manager {
 
 	private void createFireExplodeParticle(final Location center) {
 		Location loc = center.clone();
-		loc.getWorld().spawnParticle(Particle.LAVA, loc,  100,2,2,2,0.001);
+		loc.getWorld().spawnParticle(Particle.LAVA, loc,  100,2,2,2,0.1);
+		loc.getWorld().spawnParticle(Particle.FLAME, loc,  500,2,2,2,0.8);
+		//loc.getWorld().spawnParticle(Particle.SPELL, loc,  100,2,2,2,0.01);
+		loc.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, loc,  100,2,2,2,0.01);
+		//loc.getWorld().spawnParticle(Particle.SNOWBALL, loc,  100,5,5,5,0.01);
+
+		loc.getWorld().playSound(loc,Sound.ENTITY_ENDERDRAGON_FIREBALL_EXPLODE,1F,1F);
 	}
 
 
